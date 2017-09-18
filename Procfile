@@ -1,0 +1,1 @@
+web: target/universal/stage/bin/rps-frontend -Dhttp.port=$PORT -Dplay.crypto.secret=${APPLICATION_SECRET}
