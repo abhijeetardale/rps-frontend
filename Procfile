@@ -1,0 +1,1 @@
+web: target/universal/stage/bin/rps-frontend -Dplay.crypto.secret=${APPLICATION_SECRET}
