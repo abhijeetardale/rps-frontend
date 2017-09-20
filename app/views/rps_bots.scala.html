@@ -74,6 +74,8 @@
 
             var successFn = function(data) {
 
+                if(parseInt($('#player1').text())==0 && $('input[name=rps]:checked').val()=="DYNAMITE"){ $('input[name=rps]:checked').val("WATERBOMB");}
+
                 var successPostFn = function(data1) {
 
                     var row1 = $('<div class="row row-border"></div>')
