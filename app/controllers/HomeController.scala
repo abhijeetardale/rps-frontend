@@ -50,7 +50,7 @@ class HomeController @Inject() (ws: WSClient)(implicit val messagesApi: Messages
       },
       successSub => {
         sendData(successSub)
-          .map{ _ => Ok(views.html.rps_bots(successSub)) }
+          .map{ _ => Ok(views.html.rps_bots(successSub.copy(mode = if(successSub.numberOfBots=="2") Some("autoMove") else successSub.mode))) }
       }
     )
 
