@@ -120,7 +120,7 @@ class HomeController @Inject() (ws: WSClient)(implicit val messagesApi: Messages
     }
   }
 
-  def lastOpponentMove = Action.async { implicit request =>
+  def opponentLastMove = Action.async { implicit request =>
     Try(request.body.asJson) match {
       case Success(payload) =>
 
@@ -131,8 +131,8 @@ class HomeController @Inject() (ws: WSClient)(implicit val messagesApi: Messages
           val url2= (y \ "player2url").as[String]
 
           for {
-            res1 <- if(url1!="no"){ws.url(s"$url1/move").post(Json.toJson(Map("lastOpponentMove" -> player2)))} else Future(url1)
-            res2 <- if(url2!="no"){ws.url(s"$url2/move").post(Json.toJson(Map("lastOpponentMove" -> player1)))} else Future(url2)
+            res1 <- if(url1!="no"){ws.url(s"$url1/move").post(Json.toJson(Map("opponentLastMove" -> player2)))} else Future(url1)
+            res2 <- if(url2!="no"){ws.url(s"$url2/move").post(Json.toJson(Map("opponentLastMove" -> player1)))} else Future(url2)
           } yield(res1,res2)
 
           player1 match {
@@ -160,7 +160,7 @@ class HomeController @Inject() (ws: WSClient)(implicit val messagesApi: Messages
       JavaScriptReverseRouter("jsRoutes")(
         routes.javascript.HomeController.getPlayer1Move,
         routes.javascript.HomeController.getPlayer2Move,
-        routes.javascript.HomeController.lastOpponentMove
+        routes.javascript.HomeController.opponentLastMove
       )
     ).as("text/javascript")
   }

@@ -18,7 +18,7 @@ object bot {
   implicit val formats = Json.format[bot]
 }
 
-case class lastMove(lastOpponentMove:String, lastSystemMove : String)
+case class lastMove(opponentLastMove:String, lastSystemMove : String)
 
 object lastMove{
   implicit val formats=Json.format[lastMove]
